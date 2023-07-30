@@ -2,7 +2,7 @@
   "name": "storybook-addon-live-code-editor",
   "version": "0.1.0",
   "description": "A Storybook add-on for live editing stories. Supports React and TypeScript.",
-  "repository": "https://github.com/JeremyRH/storybook-addon-live-code-editor.git",
+  "repository": "https://github.com/Flcwl/storybook-addon-code-editor",
   "author": "JeremyRH <holcomb227@gmail.com>",
   "license": "MIT",
   "files": [
@@ -13,10 +13,13 @@
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
   "types": "dist/es/index.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "scripts": {
     "build": "tsc --outDir dist/es --module esnext && tsc --outDir dist/cjs --module commonjs --declaration false",
     "format": "prettier src example/src --write",
-    "install-example-deps": "cd example && pnpm ci",
+    "install-example-deps": "cd example && pnpm i",
     "start": "pnpm run build && cd example && pnpm run storybook",
     "test": "jest src"
   },
