@@ -1,4 +1,4 @@
-# storybook-addon-code-editor
+# storybook-addon-live-code-editor
 
 A Storybook add-on for live editing stories. Supports React and TypeScript.
 
@@ -11,20 +11,20 @@ A Storybook add-on for live editing stories. Supports React and TypeScript.
 Install as a dev dependency.
 
 ```sh
-npm install --save-dev storybook-addon-code-editor
+npm install --save-dev storybook-addon-live-code-editor
 ```
 
-Add `storybook-addon-code-editor` in your `.storybook/main.js` file and add the `staticDirs`:
+Add `storybook-addon-live-code-editor` in your `.storybook/main.js` file and add the `staticDirs`:
 
 ```js
 // .storybook/main.js
 const {
   getCodeEditorStaticDirs
-} = require('storybook-addon-code-editor/getStaticDirs');
+} = require('storybook-addon-live-code-editor/getStaticDirs');
 
 module.exports = {
   addons: [
-    'storybook-addon-code-editor',
+    'storybook-addon-live-code-editor',
     ...
   ],
   staticDirs: [
@@ -38,14 +38,14 @@ module.exports = {
 `staticDirs` sets a list of directories of static files to be loaded by Storybook.
 The editor ([monaco-editor](https://github.com/microsoft/monaco-editor)) requires these extra static files to be available at runtime.
 
-Additional static files can be added using the `getExtraStaticDir` helper from `storybook-addon-code-editor/getStaticDirs`:
+Additional static files can be added using the `getExtraStaticDir` helper from `storybook-addon-live-code-editor/getStaticDirs`:
 
 ```js
 // .storybook/main.js
 const {
   getCodeEditorStaticDirs,
   getExtraStaticDir,
-} = require('storybook-addon-code-editor/getStaticDirs');
+} = require('storybook-addon-live-code-editor/getStaticDirs');
 
 module.exports = {
   staticDirs: [
@@ -60,8 +60,9 @@ module.exports = {
 
 **Important:**
 
-The default Webpack 4 builder does not work with `storybook-addon-code-editor`.
+The default Webpack 4 builder does not work with `storybook-addon-live-code-editor`.
 Please use one of the following:
+
 - [`@storybook/builder-webpack5`](https://github.com/storybookjs/storybook/blob/65dd683883a884e6e31a2e84b0054b0e260078a0/lib/builder-webpack5/README.md)
 - [`@storybook/builder-vite`](https://github.com/storybookjs/builder-vite)
 
@@ -75,7 +76,7 @@ Use the `Playground` component in [MDX format](https://storybook.js.org/docs/rea
 
 ```jsx
 // MyComponent.stories.mdx
-import { Playground } from 'storybook-addon-code-editor';
+import { Playground } from 'storybook-addon-live-code-editor';
 
 <Playground code="export default () => <h1>Hello</h1>;"} />
 ```
@@ -85,7 +86,7 @@ import { Playground } from 'storybook-addon-code-editor';
 
 ```jsx
 // MyComponent.stories.mdx
-import { Playground } from 'storybook-addon-code-editor';
+import { Playground } from 'storybook-addon-live-code-editor';
 import * as MyLibrary from './index';
 import storyCode from './MyStory.source.tsx?raw';
 import MyLibraryTypes from '../dist/types.d.ts?raw';
@@ -137,7 +138,7 @@ Use the `createLiveEditStory` function in traditional stories:
 
 ```js
 // MyComponent.stories.js
-import { createLiveEditStory } from 'storybook-addon-code-editor';
+import { createLiveEditStory } from 'storybook-addon-live-code-editor';
 import * as MyLibrary from './index';
 import storyCode from './MyStory.source.tsx?raw';
 
@@ -171,7 +172,7 @@ Check out [examples of `monaco-editor`](https://github.com/microsoft/monaco-edit
 
 ```js
 // .storybook/preview.js
-import { setupMonaco } from 'storybook-addon-code-editor';
+import { setupMonaco } from 'storybook-addon-live-code-editor';
 
 setupMonaco({
   // https://microsoft.github.io/monaco-editor/typedoc/interfaces/Environment.html

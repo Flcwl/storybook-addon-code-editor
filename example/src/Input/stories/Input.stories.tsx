@@ -1,4 +1,4 @@
-import { createLiveEditStory } from 'storybook-addon-code-editor';
+import { createLiveEditStory } from 'storybook-addon-live-code-editor';
 import * as ExampleLibrary from '../../index';
 import InputTsSource from './editableStory.source.tsx?raw';
 

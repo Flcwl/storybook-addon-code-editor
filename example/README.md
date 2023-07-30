@@ -1,12 +1,12 @@
 # example-library
 
-This is an example of a React library using `storybook-addon-code-editor`.
+This is an example of a React library using `storybook-addon-live-code-editor`.
 
-[Storybook site](https://jeremyrh.github.io/storybook-addon-code-editor)
+[Storybook site](https://jeremyrh.github.io/storybook-addon-live-code-editor)
 
 Check out the story files:
 
-- [src/intro.stories.mdx](https://raw.githubusercontent.com/JeremyRH/storybook-addon-code-editor/main/example/src/intro.stories.mdx)
+- [src/intro.stories.mdx](https://raw.githubusercontent.com/JeremyRH/storybook-addon-live-code-editor/main/example/src/intro.stories.mdx)
 - [src/Button/stories/Button.stories.tsx](./src/Button/stories/Button.stories.tsx)
 
 And the source files (editable code in the editor):

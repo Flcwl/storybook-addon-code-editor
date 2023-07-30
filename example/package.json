@@ -18,7 +18,7 @@
     "@types/react": "^17.0.39",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "storybook-addon-code-editor": "file:../",
+    "storybook-addon-live-code-editor": "file:../",
     "typescript": "^4.9.5"
   },
   "overrides": {

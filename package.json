@@ -1,8 +1,8 @@
 {
-  "name": "storybook-addon-code-editor",
-  "version": "2.2.0",
+  "name": "storybook-addon-live-code-editor",
+  "version": "0.1.0",
   "description": "A Storybook add-on for live editing stories. Supports React and TypeScript.",
-  "repository": "https://github.com/JeremyRH/storybook-addon-code-editor.git",
+  "repository": "https://github.com/JeremyRH/storybook-addon-live-code-editor.git",
   "author": "JeremyRH <holcomb227@gmail.com>",
   "license": "MIT",
   "files": [
@@ -16,15 +16,15 @@
   "scripts": {
     "build": "tsc --outDir dist/es --module esnext && tsc --outDir dist/cjs --module commonjs --declaration false",
     "format": "prettier src example/src --write",
-    "install-example-deps": "cd example && npm ci",
-    "start": "npm run build && cd example && npm run storybook",
+    "install-example-deps": "cd example && pnpm ci",
+    "start": "pnpm run build && cd example && pnpm run storybook",
     "test": "jest src"
   },
   "dependencies": {
-    "@babel/standalone": "^7.22.5",
-    "@storybook/addons": "^6.5.16",
-    "@storybook/components": "^6.5.16",
-    "monaco-editor": "^0.39.0",
+    "@babel/standalone": "^7.22.9",
+    "@storybook/addons": "7.1.0-alpha.29",
+    "@storybook/components": "7.1.0-alpha.29",
+    "monaco-editor": "^0.40.0",
     "raw-loader": "^4.0.2"
   },
   "peerDependencies": {

@@ -18,7 +18,7 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: storybook-addon-code-editor
+          package-name: storybook-addon-live-code-editor
           bootstrap-sha: a42654adbf47be1bf584784bd507061f2ae75038
 
       - uses: actions/checkout@v3

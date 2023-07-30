@@ -1,4 +1,4 @@
-import { setupMonaco } from 'storybook-addon-code-editor';
+import { setupMonaco } from 'storybook-addon-live-code-editor';
 import ExampleLibraryTypes from '../dist/types.d.ts?raw';
 
 // When customizing monaco-editor, setupMonaco needs to be called before any story loads.
@@ -13,7 +13,7 @@ setupMonaco({
   const {
     getCodeEditorStaticDirs,
     getExtraStaticDir,
-  } = require('storybook-addon-code-editor/getStaticDirs');
+  } = require('storybook-addon-live-code-editor/getStaticDirs');
 
   module.exports = {
     staticDirs: [

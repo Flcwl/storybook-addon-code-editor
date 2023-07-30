@@ -1,7 +1,7 @@
 const {
   getCodeEditorStaticDirs,
   getExtraStaticDir,
-} = require('storybook-addon-code-editor/getStaticDirs');
+} = require('storybook-addon-live-code-editor/getStaticDirs');
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -11,7 +11,7 @@ module.exports = {
     // getExtraStaticDir('monaco-editor/esm'),
   ],
   addons: [
-    'storybook-addon-code-editor',
+    'storybook-addon-live-code-editor',
     {
       name: '@storybook/addon-essentials',
       options: {
