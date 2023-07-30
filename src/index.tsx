@@ -1,4 +1,4 @@
-import type { Story } from '@storybook/api';
+import type { StoryEntry } from '@storybook/api';
 import * as React from 'react';
 import { createStore } from './createStore';
 import Editor from './Editor/Editor';
@@ -69,7 +69,7 @@ export function createLiveEditStory(options: StoryState) {
     },
   };
 
-  return story as typeof story & Story;
+  return story as typeof story & StoryEntry;
 }
 
 const savedCode: Record<PropertyKey, string> = {};

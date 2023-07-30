@@ -11,6 +11,9 @@ dependencies:
   '@storybook/addons':
     specifier: 7.1.0-alpha.29
     version: 7.1.0-alpha.29(react-dom@18.2.0)(react@18.2.0)
+  '@storybook/api':
+    specifier: 7.1.0-alpha.29
+    version: 7.1.0-alpha.29(react-dom@18.2.0)(react@18.2.0)
   '@storybook/components':
     specifier: 7.1.0-alpha.29
     version: 7.1.0-alpha.29(react-dom@18.2.0)(react@18.2.0)
@@ -1664,6 +1667,23 @@ packages:
       '@storybook/manager-api': 7.1.0-alpha.29(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.1.0-alpha.29
       '@storybook/types': 7.1.0-alpha.29
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@storybook/api@7.1.0-alpha.29(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-XOK7W2nOPeUU2ZfOVkz+tcQbZbt8CSKMp9LgPcwBWEbtVjStVoWciU2+GPm6DV5e7B00Axw0qWTPTMJfMX3a7A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      '@storybook/client-logger': 7.1.0-alpha.29
+      '@storybook/manager-api': 7.1.0-alpha.29(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
