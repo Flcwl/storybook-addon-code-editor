@@ -11,14 +11,19 @@ export function evalModule(
     presets: ['typescript', 'react'],
     plugins: ['transform-modules-commonjs'],
   });
+  
   const setExports = new Function('require', 'exports', code);
+
   const require = (moduleId: string) => {
     const module = availableImports[moduleId];
+
     if (!module) {
       throw new TypeError(`Failed to resolve module specifier "${moduleId}"`);
     }
+
     return module;
   };
+
   const exports = {};
 
   setExports(require, exports);

@@ -13,7 +13,7 @@ const store = createStore<StoryState>();
 export function register() {
   addons.register(addonId, (api) => {
     addons.addPanel(panelId, {
-      title: 'Live code editor',
+      title: 'VS Code',
       type: types.PANEL,
       paramKey: paramId,
       render({ active, key }) {
@@ -24,7 +24,6 @@ export function register() {
         }
 
         const storyState = store.getValue(storyId)!;
-
         return (
           <AddonPanel active={true} key={key}>
             <Editor

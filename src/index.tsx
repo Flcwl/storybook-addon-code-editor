@@ -4,6 +4,7 @@ import { createStore } from './createStore';
 import Editor from './Editor/Editor';
 import ErrorBoundary from './ErrorBoundary';
 import Preview from './Preview';
+import { GLOBAL_VARIABLES_KEY } from './Editor/setGlobalVariables';
 export { setupMonaco } from './Editor/setupMonaco';
 
 interface StoryState {
@@ -17,6 +18,11 @@ const hasReactRegex = /import\s+(\*\s+as\s+)?React[,\s]/;
 
 function LivePreview({ storyId, storyArgs }: { storyId: string; storyArgs?: any }) {
   const [state, setState] = React.useState(store.getValue(storyId));
+
+  const [globalVariables, setGlobalVariables] = React.useState<any>(
+    store.getValue(GLOBAL_VARIABLES_KEY)
+  );
+
   const errorBoundaryResetRef = React.useRef<() => void>();
   const fullCode = hasReactRegex.test(state!.code)
     ? state!.code
@@ -29,10 +35,16 @@ function LivePreview({ storyId, storyArgs }: { storyId: string; storyArgs?: any 
     });
   }, [storyId]);
 
+  React.useEffect(() => {
+    return store.onChange(GLOBAL_VARIABLES_KEY, (newState) => {
+      setGlobalVariables(newState);
+    });
+  }, []);
+
   return (
     <ErrorBoundary resetRef={errorBoundaryResetRef}>
       <Preview
-        availableImports={{ react: React, ...state!.availableImports }}
+        availableImports={{ react: React, ...globalVariables, ...state!.availableImports }}
         code={fullCode}
         componentProps={storyArgs}
       />
@@ -61,6 +73,8 @@ export function createLiveEditStory(options: StoryState) {
 }
 
 const savedCode: Record<PropertyKey, string> = {};
+
+export { setGlobalVariables } from './Editor/setGlobalVariables';
 
 export function Playground({
   availableImports,
