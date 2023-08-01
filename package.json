@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-live-code-editor",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "A Storybook add-on for live editing stories. Supports React and TypeScript.",
   "repository": "https://github.com/Flcwl/storybook-addon-code-editor",
   "author": "JeremyRH <holcomb227@gmail.com>",

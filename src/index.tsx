@@ -6,6 +6,7 @@ import ErrorBoundary from './ErrorBoundary';
 import Preview from './Preview';
 import { GLOBAL_VARIABLES_KEY } from './Editor/setGlobalVariables';
 export { setupMonaco } from './Editor/setupMonaco';
+import { parseFile } from './parse';
 
 interface StoryState {
   code: string;
@@ -41,7 +42,10 @@ function LivePreview({ storyId, storyArgs }: { storyId: string; storyArgs?: any 
     });
   }, []);
 
+  if (!globalVariables) return null;
+
   return (
+    // @ts-ignore
     <ErrorBoundary resetRef={errorBoundaryResetRef}>
       <Preview
         availableImports={{ react: React, ...globalVariables, ...state!.availableImports }}
@@ -53,74 +57,39 @@ function LivePreview({ storyId, storyArgs }: { storyId: string; storyArgs?: any 
 }
 
 export function createLiveEditStory(options: StoryState) {
+  if (typeof options === 'string') {
+    options = { code: options };
+  }
+
   const id = `id_${Math.random()}`;
 
   store.setValue(id, options);
 
-  const story = (storyArgs: any) => <LivePreview storyId={id} storyArgs={storyArgs} />;
+  const { name, storyName, description } = parseFile(options.code);
 
-  story.parameters = {
+  const storyObj: Record<string, any> = {
+    [name]: (storyArgs: any) => <LivePreview storyId={id} storyArgs={storyArgs} />,
+  };
+
+  if (storyName) {
+    storyObj[name].storyName = storyName;
+  }
+
+  storyObj[name].parameters = {
     liveCodeEditor: {
       disable: false,
       id,
     },
     docs: {
-      transformSource: (code: string) => store.getValue(id)?.code ?? code,
+      transformSource: (code: string) => options.code ?? store.getValue(id)?.code ?? code,
     },
   };
 
-  return story as typeof story & StoryEntry;
-}
+  if (description) {
+    storyObj[name].parameters.docs.description = { story: description };
+  }
 
-const savedCode: Record<PropertyKey, string> = {};
+  return storyObj[name];
+}
 
 export { setGlobalVariables } from './Editor/setGlobalVariables';
-
-export function Playground({
-  availableImports,
-  code,
-  height = '200px',
-  id,
-  ...editorProps
-}: Partial<StoryState> & { height?: string; id?: string }) {
-  let initialCode = code ?? '';
-  if (id !== undefined) {
-    savedCode[id] ??= initialCode;
-    initialCode = savedCode[id];
-  }
-  const [currentCode, setCurrentCode] = React.useState(initialCode);
-  const errorBoundaryResetRef = React.useRef<() => void>();
-  const fullCode = hasReactRegex.test(currentCode)
-    ? currentCode
-    : "import * as React from 'react';" + currentCode;
-
-  return (
-    <div style={{ border: '1px solid #bebebe' }}>
-      <div style={{ margin: '16px 16px 0 16px', overflow: 'auto', paddingBottom: '16px' }}>
-        <ErrorBoundary resetRef={errorBoundaryResetRef}>
-          <Preview availableImports={{ react: React, ...availableImports }} code={fullCode} />
-        </ErrorBoundary>
-      </div>
-      <div
-        style={{
-          borderTop: '1px solid #bebebe',
-          height,
-          overflow: 'auto',
-          resize: 'vertical',
-        }}
-      >
-        <Editor
-          {...editorProps}
-          onInput={(newCode) => {
-            if (id !== undefined) {
-              savedCode[id] = newCode;
-            }
-            setCurrentCode(newCode);
-            errorBoundaryResetRef.current?.();
-          }}
-          value={currentCode}
-        />
-      </div>
-    </div>
-  );
-}
