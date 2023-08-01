@@ -1,4 +1,4 @@
-import { createLiveEditStory } from 'storybook-addon-live-code-editor';
+import { createStory } from 'storybook-addon-live-code-editor';
 import * as ExampleLibrary from '../../index';
 import ButtonJsSource from './editableStory.source.js?raw';
 import ButtonTsSource from './editableStory.source.tsx?raw';
@@ -8,7 +8,7 @@ export default {
   component: ExampleLibrary.Button,
 };
 
-export const EditableStoryJSSource = createLiveEditStory({
+export const EditableStoryJSSource = createStory({
   availableImports: { 'example-library': ExampleLibrary },
   code: ButtonJsSource,
   modifyEditor(monaco, editor) {
@@ -21,7 +21,7 @@ export const EditableStoryJSSource = createLiveEditStory({
 // Make the default tab 'Story' instead of 'Docs'.
 EditableStoryJSSource.parameters.viewMode = 'story';
 
-export const EditableStoryTSSource = createLiveEditStory({
+export const EditableStoryTSSource = createStory({
   availableImports: { 'example-library': ExampleLibrary },
   code: ButtonTsSource,
   modifyEditor(monaco, editor) {
@@ -35,7 +35,7 @@ export const EditableStoryTSSource = createLiveEditStory({
 
 EditableStoryTSSource.parameters.viewMode = 'story';
 
-export const EditableStoryWithControls = createLiveEditStory({
+export const EditableStoryWithControls = createStory({
   availableImports: { 'example-library': ExampleLibrary },
   code: `
     import { Button } from 'example-library';

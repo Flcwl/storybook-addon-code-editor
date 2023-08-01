@@ -132,26 +132,26 @@ interface PlaygroundProps {
 `React` is automatically imported if `code` does not import it.
 React TypeScript definitions will be automatically loaded if `@types/react` is available.
 
-### `createLiveEditStory`
+### `createStory`
 
-Use the `createLiveEditStory` function in traditional stories:
+Use the `createStory` function in traditional stories:
 
 ```js
 // MyComponent.stories.js
-import { createLiveEditStory } from 'storybook-addon-live-code-editor';
+import { createStory } from 'storybook-addon-live-code-editor';
 import * as MyLibrary from './index';
 import storyCode from './MyStory.source.tsx?raw';
 
-export const MyStory = createLiveEditStory({
+export const MyStory = createStory({
   availableImports: { 'my-library': MyLibrary },
   code: storyCode,
 });
 ```
 
-`createLiveEditStory` options:
+`createStory` options:
 
 ```ts
-interface LiveEditStoryOptions {
+interface CreateStoryOptions {
   availableImports?: {
     [importSpecifier: string]: {
       [namedImport: string]: any;

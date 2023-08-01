@@ -56,7 +56,7 @@ function LivePreview({ storyId, storyArgs }: { storyId: string; storyArgs?: any 
   );
 }
 
-export function createLiveEditStory(options: StoryState) {
+export function createStory(options: StoryState) {
   if (typeof options === 'string') {
     options = { code: options };
   }
