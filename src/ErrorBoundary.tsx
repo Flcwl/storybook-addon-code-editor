@@ -1,11 +1,5 @@
 import React from 'react';
-
-const errorStyle: React.CSSProperties = {
-  color: 'rgba(239, 135, 132, 1)',
-  backgroundColor: 'rgba(37, 2, 1, 0.9)',
-  padding: '16px 24px',
-  borderRadius: '4px',
-};
+import { errorStyle } from './style';
 
 interface ErrorBoundaryProps {
   resetRef: React.MutableRefObject<(() => void) | undefined>;
