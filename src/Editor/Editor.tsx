@@ -47,6 +47,8 @@ function createEditor(monaco: typeof Monaco, code: string, container: HTMLElemen
     model: monaco.editor.createModel(code, 'typescript', uri),
     overflowWidgetsDomNode: getMonacoOverflowContainer('monacoOverflowContainer'),
     tabSize: 2,
+    minimap: { enabled: false },
+    theme: 'vs-dark',
   });
 }
 

@@ -22,11 +22,11 @@ export function parseFile(fileContent: string) {
 function getStoryFunctionName(fileContent: string, functionObj: any) {
   let name = ''
   const nameMatch = fileContent.match(new RegExp(/export\s+default\s+([^;]+)/));
-  if (nameMatch) {
+  if (nameMatch && typeof nameMatch[1] === 'string') {
      name = nameMatch[1];
   }
 
-  functionObj.name = name
+  functionObj.name = name.trim();
   // return name
 }
 
@@ -35,11 +35,11 @@ function getStoryName (fileContent: string, functionObj: any) {
   const storyNameMatch = fileContent.match(
     new RegExp(`${functionObj.name || ''}\.storyName\\s*=\\s*['"](.*)['"]`)
   );
-  if (storyNameMatch) {
+  if (storyNameMatch && typeof storyNameMatch[1] === 'string') {
     storyName = storyNameMatch[1];
   }
 
-  functionObj.storyName = storyName
+  functionObj.storyName = storyName.trim()
   // return storyName
 }
 
