@@ -86,7 +86,7 @@ export function createStory(options: StoryState) {
   };
 
   if (description) {
-    storyObj[name].parameters.docs.description = { story: description };
+    storyObj[name].parameters.docs.description = { story: `> ${description}` };
   }
 
   return storyObj[name];

@@ -13,7 +13,7 @@ const store = createStore<StoryState>();
 export function register() {
   addons.register(addonId, (api) => {
     addons.addPanel(panelId, {
-      title: 'VS Code',
+      title: 'Playground',
       type: types.PANEL,
       paramKey: paramId,
       render({ active, key }) {
